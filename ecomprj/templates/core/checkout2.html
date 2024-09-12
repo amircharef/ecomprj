@@ -1,0 +1,458 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="info-user" class="cont-box-info" style="margin-top: 40px; display: flex; gap: 20px;">
+    <div style="width:100%;">
+        <form name="checkout" method="POST" action="{% url 'core:checkout2' %}">
+            {% csrf_token %}
+            <div class="row pt-0 ">
+                <div class="large-7 col">
+                    <div id="customer_details" class="brd-box">
+                        <div class="clear">
+                            <div class="info-order box" style="width:100%;">
+                                <h4 style="margin-bottom: 20px;"> <i class="fa-solid fa-list"></i> ادخل بياناتك وعنوانك </h4>
+                                <div class="info pad-box">
+                                    <div style="display: flex; gap: 10px;">
+
+                                        <p class="div-inp" style="flex: 1;">
+                                            <label for="billing_first_name" style="position:relative;" class="">الاسم&nbsp;
+                                                <span class="required" title="obligatoire" style="color: #000000 ; position: absolute; top: 50%; right: 40px; transform: translateY(-50%); font-size: 1.2rem;">*</span>
+                                            </label>
+                                            <span class="">
+                                                <input  
+                                                    type="text"
+                                                    placeholder="" 
+                                                    aria-label="name" 
+                                                    value=""
+                                                    required 
+                                                    style="width: 100%;
+                                                    border-radius: 0;
+                                                    outline: none;
+                                                    border: 1px solid #ddd;
+                                                    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+                                                    box-sizing: border-box;
+                                                    font-size: .97em;
+                                                    height: 2.507em;
+                                                    max-width: 100%;
+                                                    padding: 0 .75em;
+                                                    margin-top: 5px;" 
+                                                    id=""
+                                                    name="name">
+                                            </span>
+                                        </p>
+                                        <p class="div-inp" style="flex: 1;">
+                                            <label for="billing_last_name" style="position:relative;" class="">اللقب&nbsp;
+                                                <span class="required" title="obligatoire" style="color: #000000 ; position: absolute; top: 50%; right: 40px; transform: translateY(-50%); font-size: 1.2rem;">*</span>
+                                            </label>
+                                            <span class="">
+                                                <input  
+                                                    type="text"
+                                                    placeholder="" 
+                                                    aria-label="last-name" 
+                                                    value=""
+                                                    required 
+                                                    style="width: 100%;
+                                                    border-radius: 0;
+                                                    outline: none;
+                                                    border: 1px solid #ddd;
+                                                    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+                                                    box-sizing: border-box;
+                                                    font-size: .97em;
+                                                    height: 2.507em;
+                                                    max-width: 100%;
+                                                    padding: 0 .75em;
+                                                    margin-top: 5px;"
+                                                    id=""
+                                                    name="last_name"
+                                                >
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <p class="div-inp" style="flex: 1;">
+                                        <label for="billing_company" class="">اسم الشركة&nbsp;
+                                            <span class="optional">(اختياري)</span>
+                                        </label>
+                                        <span class="">
+                                            <input  
+                                                type="text"
+                                                placeholder=""
+                                                aria-label="billing_company"  
+                                                style="width: 100%;
+                                                    border-radius: 0;
+                                                    outline: none;
+                                                    border: 1px solid #ddd;
+                                                    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+                                                    box-sizing: border-box;
+                                                    font-size: .97em;
+                                                    height: 2.507em;
+                                                    max-width: 100%;
+                                                    padding: 0 .75em;
+                                                    margin-top: 5px;"
+                                                id=""
+                                                name="billing_company"
+                                                value=""
+                                            >
+                                        </span>
+                                    </p>
+                                    <p class="div-inp" style="flex: 1;">
+                                        <label for="billing_address" class="">العنوان&nbsp;
+                                            <span class="optional">(اختياري)</span>
+                                        </label>
+                                        <span class="">
+                                            <input  
+                                                type="text"
+                                                placeholder=""
+                                                aria-label="billing-address"  
+                                                style="width: 100%;
+                                                    border-radius: 0;
+                                                    outline: none;
+                                                    border: 1px solid #ddd;
+                                                    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+                                                    box-sizing: border-box;
+                                                    font-size: .97em;
+                                                    height: 2.507em;
+                                                    max-width: 100%;
+                                                    padding: 0 .75em;
+                                                    margin-top: 5px;" 
+                                                id=""
+                                                value=""
+                                                name="billing_address"
+                                            >
+                                        </span>
+                                    </p>
+                                    <p class="div-inp" style="flex: 1;">
+                                        <label for="billing_state" style="position:relative;" class="">الولاية&nbsp;
+                                            <span class="required" title="obligatoire" style="color: #000000 ; position: absolute; top: 50%; right: 40px; transform: translateY(-50%); font-size: 1.2rem;">*</span>
+                                        </label>
+                                        <span class="">
+                                            <select
+                                                name="billing_state"
+                                                id="billing_state"
+                                                class=""
+                                                value=""
+                                                data-placeholder="Sélectionner une option…"
+                                                data-input-classes=""
+                                                data-label="Wilaya"
+                                                style="width: 100%;
+                                                    border-radius: 0;
+                                                    outline: none;
+                                                    border: 1px solid #ddd;
+                                                    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+                                                    box-sizing: border-box;
+                                                    font-size: .97em;
+                                                    height: 2.507em;
+                                                    max-width: 100%;
+                                                    padding: 0 .75em;
+                                                    margin-top: 5px;"
+                                            >
+                                                <option value="DZ-01">أدرار</option>
+                                                <option value="DZ-02">الشلف</option>
+                                                <option value="DZ-03">الأغواط</option>
+                                                <option value="DZ-04">أم البواقي</option>
+                                                <option value="DZ-05">باتنة</option>
+                                                <option value="DZ-06">بجاية</option>
+                                                <option value="DZ-07">بسكرة</option>
+                                                <option value="DZ-08">بشار</option>
+                                                <option value="DZ-09">البليدة</option>
+                                                <option value="DZ-10">البويرة</option>
+                                                <option value="DZ-11">تمنراست</option>
+                                                <option value="DZ-12">تبسة</option>
+                                                <option value="DZ-13">تلمسان</option>
+                                                <option value="DZ-14">تيارت</option>
+                                                <option value="DZ-15">تيزي وزو</option>
+                                                <option value="DZ-16">الجزائر</option>
+                                                <option value="DZ-17">الجلفة</option>
+                                                <option value="DZ-18">جيجل</option>
+                                                <option value="DZ-19">سطيف</option>
+                                                <option value="DZ-20">سعيدة</option>
+                                                <option value="DZ-21">سكيكدة</option>
+                                                <option value="DZ-22">سيدي بلعباس</option>
+                                                <option value="DZ-23">عنابة</option>
+                                                <option value="DZ-24">قالمة</option>
+                                                <option value="DZ-25">قسنطينة</option>
+                                                <option value="DZ-26">المدية</option>
+                                                <option value="DZ-27">مستغانم</option>
+                                                <option value="DZ-28">المسيلة</option>
+                                                <option value="DZ-29">معسكر</option>
+                                                <option value="DZ-30">ورقلة</option>
+                                                <option value="DZ-31">وهران</option>
+                                                <option value="DZ-32">البيض</option>
+                                                <option value="DZ-33">إليزي</option>
+                                                <option value="DZ-34">برج بوعريريج</option>
+                                                <option value="DZ-35">بومرداس</option>
+                                                <option value="DZ-36">الطارف</option>
+                                                <option value="DZ-37">تندوف</option>
+                                                <option value="DZ-38">تيسمسيلت</option>
+                                                <option value="DZ-39">الوادي</option>
+                                                <option value="DZ-40" selected="selected">خنشلة</option>
+                                                <option value="DZ-41">سوق أهراس</option>
+                                                <option value="DZ-42">تيبازة</option>
+                                                <option value="DZ-43">ميلة</option>
+                                                <option value="DZ-44">عين الدفلى</option>
+                                                <option value="DZ-45">النعامة</option>
+                                                <option value="DZ-46">عين تموشنت</option>
+                                                <option value="DZ-47">غرداية</option>
+                                                <option value="DZ-48">غليزان</option>
+                                                <option value="DZ-49">تيميمون</option>
+                                                <option value="DZ-50">برج باجي مختار</option>
+                                                <option value="DZ-51">أولاد جلال</option>
+                                                <option value="DZ-52">بني عباس</option>
+                                                <option value="DZ-53">عين صالح</option>
+                                                <option value="DZ-54">عين قزام</option>
+                                                <option value="DZ-55">توقرت</option>
+                                                <option value="DZ-56">جانت</option>
+                                                <option value="DZ-57">المغير</option>
+                                                <option value="DZ-58">المنيعة</option>                                        
+                                            </select>
+                                        </span>
+                                    </p>
+                                    <p class="div-inp" style="flex: 1;">
+                                        <label for="billing_city" style="position:relative;" class="">البلدية&nbsp;
+                                            <span class="required" title="obligatoire" style="color: #000000 ; position: absolute; top: 50%; right: 40px; transform: translateY(-50%); font-size: 1.2rem;">*</span>
+                                        </label>
+                                        <span class="">
+                                            <input  
+                                                type="text"
+                                                placeholder="" 
+                                                aria-label="billing-city" 
+                                                required 
+                                                style="width: 100%;
+                                                    border-radius: 0;
+                                                    outline: none;
+                                                    border: 1px solid #ddd;
+                                                    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+                                                    box-sizing: border-box;
+                                                    font-size: .97em;
+                                                    height: 2.507em;
+                                                    max-width: 100%;
+                                                    padding: 0 .75em;
+                                                    margin-top: 5px;" 
+                                                id=""
+                                                value=""
+                                                name="billing_city"
+                                            >
+                                        </span>
+                                    </p>
+                                    <p class="div-inp" style="flex: 1;">
+                                        <label for="billing_phone" style="position:relative;" class="">رقم الهاتف&nbsp;
+                                            <span class="required" title="obligatoire" style="color: #000000 ; position: absolute; top: 50%; right: 65px; transform: translateY(-50%); font-size: 1.2rem;">*</span>
+                                        </label>
+                                        <span class="">
+                                            <input  
+                                                type="tel"
+                                                placeholder="" 
+                                                aria-label="billing-phone" 
+                                                required 
+                                                style="width: 100%;
+                                                    border-radius: 0;
+                                                    outline: none;
+                                                    border: 1px solid #ddd;
+                                                    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+                                                    box-sizing: border-box;
+                                                    font-size: .97em;
+                                                    height: 2.507em;
+                                                    max-width: 100%;
+                                                    padding: 0 .75em;
+                                                    margin-top: 5px;" 
+                                                id=""
+                                                value=""
+                                                name="billing_phone"
+                                            >
+                                        </span>
+                                    </p>
+                                    <p class="div-inp" style="flex: 1;">
+                                        <label for="billing_email" style="position:relative;" class="">الايميل الالكتروني&nbsp;
+                                            <span class="required" title="obligatoire" style="color: #000000 ; position: absolute; top: 50%; right: 98px; transform: translateY(-50%); font-size: 1.2rem;">*</span>
+                                        </label>
+                                        <span class="">
+                                            <input  
+                                                type="email"
+                                                placeholder="" 
+                                                aria-label="billing-email" 
+                                                required 
+                                                style="width: 100%;
+                                                border-radius: 0;
+                                                outline: none;
+                                                border: 1px solid #ddd;
+                                                box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+                                                box-sizing: border-box;
+                                                font-size: .97em;
+                                                height: 2.507em;
+                                                max-width: 100%;
+                                                padding: 0 .75em;
+                                                margin-top: 5px;
+                                                margin-top: 5px;"
+                                                id="billing_email"
+                                                value=""
+                                                name="billing_email"
+                                            >
+                                        </span>
+                                    </p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clear">
+                            <div class="additional-fields" style="flex: 0.7;">
+                                <div class="additional-fields__field-wrapper pad-box">
+                                    <p class="div-inp" style="flex: 1;">
+                                        <label for="order_comments" class="">ملاحظات الطلب&nbsp;
+                                            <span class="optional"> (اختياري)</span>
+                                        </label>
+                                        <span class="">
+                                            <textarea
+                                                name="order_comments"
+                                                class="input-text "
+                                                id="order_comments"
+                                                value=""
+                                                placeholder="ملاحظات الطلب"
+                                                rows="2"
+                                                cols="5"
+                                                style=
+                                                    "width: 100%;
+                                                    border-radius: 0;
+                                                    outline: none;
+                                                    border: 1px solid #ddd;
+                                                    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+                                                    box-sizing: border-box;
+                                                    font-size: .97em;
+                                                    height: 8.507em;
+                                                    max-width: 100%;
+                                                    padding: 0.75rem 1.75em;
+                                                    margin-top: 5px;"
+                                        ></textarea>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="large-5 col">
+                    <div style="padding: 20px; background-color: #f9f9f9; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); border-radius: 5px;">
+                        <div class="checkout-sidebar sm-touch-scroll">
+                            <h4 style="text-align: right; background: none; color:black; margin-bottom: 20px;">تفاصيل السلة</h4>
+                            <div id="order_review" class="">
+                                <table class="" style="width: 100%; text-align: right; border-collapse: collapse; margin-bottom: 20px;">
+                                    <thead>
+                                        <tr style="border-bottom: 3px solid #e5e5e5;">
+                                            <th style="padding: 10px; text-align: right;">المنتج</th>
+                                            <th style="padding: 10px; text-align: center;">الكمية</th>
+                                            <th style="padding: 10px; text-align: left;">المجموع الفرعي</th>
+                                        </tr>
+                                    </thead>
+                    
+                                    <tbody>
+                                        {% for product_id, item in cart_data.items %}
+                                        <tr style="border-bottom: 1px solid #e5e5e5;">
+                                            <td style="padding: 10px; text-align: right;">
+                                                <a href="{% url 'core:product-detail' item.pid %}" style="text-decoration:none; color:black;">{{ item.title }}</a>
+                                            </td>
+                                            <td style="padding: 10px; text-align: center;">{{ item.qty }} x</td>
+                                            <td style="padding: 10px; text-align: left;">{% widthratio item.price 1 item.qty %} د.ج</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                    
+                                    <tfoot>
+                                        <tr class="" style="border-bottom: 1px solid #e5e5e5;">
+                                            <th style="padding: 10px; text-align: right;">المجموع الفرعي</th>
+                                            <td></td>
+                                            <td style="padding: 10px; text-align: left;">
+                                                <span>{{cart_total_amount|floatformat:2}} د.ج</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="" style="border-bottom: 1px solid #e5e5e5;">
+                                            <td colspan="3" style="padding: 10px;">
+                                                <table style="width: 100%; text-align: right;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th style="text-align: right;">الشحن</th>
+                                                            <td style="width: 50%;"></td>
+                                                            <td style="text-align: left;">
+                                                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                                                    <li>
+                                                                        <input
+                                                                            type="hidden"
+                                                                            name="shipping_method[0]"
+                                                                            data-index="0"
+                                                                            id="shipping_method_free"
+                                                                            value="free_shipping:1"
+                                                                            class="shipping_method"
+                                                                        >
+                                                                        <label class="" for="shipping_method_free" style="font-weight: bold;">مجـــانــا</label>
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr style="font-weight: bold; border-bottom: 3px solid #e5e5e5;">
+                                            <th style="padding: 10px; text-align: right;">الإجمالي</th>
+                                            <td></td>
+                                            <td style="padding: 10px; text-align: left;">
+                                                <strong>{{cart_total_amount|floatformat:2}} د.ج</strong>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div id="payment">
+                                    <ul>
+                                        <li>
+                                            <input
+                                                id="payment_method"
+                                                type="hidden"
+                                                class="input-radio"
+                                                name="payment_method"
+                                                value=""
+                                                checked="checked"
+                                                data-order_button_text=""
+                                            >
+                                            <label for="payment_method_cod" style="font-weight: bold;">
+                                                الدفع عند التسليم
+                                            </label>
+                                            <div class="payment_box payment_method_cod">
+                                                <p>الدفع نقدا عند التسليم.</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    {% if totalcartitems %}
+                                    <div>
+                                        <button
+                                            type="submit"
+                                            class="button"
+                                            name="checkout_place_order"
+                                            id="place_order"
+                                            value="Commander"
+                                            data-value="Commander"
+                                            style="display: block;
+                                            text-align: center;
+                                            width: 100%;
+                                            padding: 10px;
+                                            background-color: #007bff;
+                                            color: white;
+                                            border: none;
+                                            border-radius: 5px;
+                                            cursor: pointer;"
+                                        >
+                                        تأكيد الطلب
+                                        </button>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

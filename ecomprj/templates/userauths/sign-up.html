@@ -1,0 +1,87 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="contanier">
+        <div class="box-sign-up">
+            <div class="signup">
+
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{form.errors}}</strong>
+                </div>
+                {% endif %}
+
+                <form method="post" method="POST">
+                    {% csrf_token %}
+                    <div class="inp">
+                        <i class="fa-solid fa-envelope"></i>
+                        {{form.username}}
+                    </div>
+                    <div class="inp">
+                        <i class="fa-solid fa-envelope"></i>
+                        {{form.email}}
+                    </div>
+                    <div class="inp">
+                        <i class="fa-solid fa-envelope"></i>
+                        {{form.password1}}
+                    </div>
+                    <div class="inp">
+                        <i class="fa-solid fa-envelope"></i>
+                        {{form.password2}}
+                    </div>
+                    <!-- <label for="email">الاسم</label>
+
+                    <label for="email">الايميل</label>
+                    <div class="inp">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" placeholder="ادخل الايميل">
+                    </div>
+
+                    <label for="email">رقم الهاتف</label>
+                    <div class="inp">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="number" placeholder="ادخل رقم الهاتف">
+                    </div>
+
+
+                    <label for="email">العنوان</label>
+                    <div class="inp">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="text" placeholder="ادخل العنوان">
+                    </div>
+
+                    <label for="password">كلمة السر</label>
+                    <div class="inp">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="ادخل الرقم السري">
+                    </div>
+                    -->
+
+                    <div class="check-box">
+                        <div class="check">
+                            <input type="checkbox">
+                            <span>حفظ الحساب</span>
+                        </div>
+                        
+                    </div> 
+
+                    <button type="submit">انشاء حساب</button>
+                </form>
+
+                <span class="line-sign">or</span>
+            
+                <div class="sign-soc">
+
+                    <div class="box">
+                        <a class="btn" href="#"><img src="{% static 'img/google.png' %}" alt=""> تسجيل الدخول بحساب جوجل</a>
+                    </div>
+                </div>
+
+                <p class="creat-ac">هل لديك حساب ؟ <a href="{% url 'userauths:sign-in' %}">تسجيل الدخول</a></p>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}

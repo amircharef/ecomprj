@@ -1,0 +1,179 @@
+{% load static %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Amir | Online Store</title>
+        
+        <!-- Link Swiper's CSS -->
+        <link rel="stylesheet" href="{% static 'swiperJs/swiper-bundle.min.css'%}" />
+        <!-- Link Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+        <!-- Link File CSS -->
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="{% static 'stylelogin.css' %}">
+        <!-- Font awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-5y1z1EYCh5MQInK9p21t4FiEkEGrTHXzIc7nl0Lkp/AB3d/vU1o2RFx7qV9A6dxEb/7+v70deXYpDtMFeB1NBQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body class="menu-side-in-bag">
+
+        <header>
+
+            <div class="header-top">
+                <div class="contanier">
+                    <p> مرحبا بكم في متجرنا</p>
+                    <div class="link-top-heder">
+                        {% if request.user.is_authenticated %}
+                            <a href="#">{{ request.user.username|capfirst  }}</a>
+                            <a href="{% url 'userauths:sign-out' %}">Sign Out</a>
+                            <a href="{% url 'core:wishlist' %}">Wishlist<span class="count-in-wishlist">{{wishlist.count}}</span></a>
+                            <a href="{% url 'core:cart' %}">Cart<span class="count-in-card cart-items-count">{{request.session.cart_data_obj|length}}</span></a>
+                            <a href="{% url 'core:checkout2' %}">Checkout</a>
+                            <a href="page-account.html">Settings</a> 
+                        {% else %}
+                            <a href="{% url 'userauths:sign-in' %}">Sign In</a>
+                        {% endif %}
+                        <!-- <a href="#">Compare</a> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-info">
+                <div class="contanier">
+                    <a href="{% url 'core:index' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                
+                    <div class="search-bar">
+                        <form action="{% url 'core:search' %}" methode="GET">
+                            <input type="search" placeholder="ابحث عن طلبك..." name="q">
+                            <button class="btn-srch" type="submit">بحث</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-bottom">
+                <div class="contanier">
+                    <!-- <i id="open-side" class="fa-solid fa-bars"></i> -->
+                    <ul class="nav-links">    
+                        
+                        {% if categories %}
+                            <li><a href="{% url 'core:index' %}"> الرئيسة</a></li>
+                            {% for c in categories %}
+                                <li><a href="{% url 'core:category-product-list' c.cid %}">{{ c.title }}</a></li>
+                            {% endfor %}
+                        {% else %}
+                            <li>No categories available</li>
+                        {% endif %}
+
+                    </ul>
+                    {% if not request.user.is_authenticated %}
+                        <a href="{% url 'userauths:sign-up' %}" class="sign-in-btn" style="text-decoration:none;"><i class="fa-solid fa-user-plus"></i> انشاء حساب </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}">
+                        <strong>{{ message }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+        </header>
+
+    {% block content %}
+
+    {% endblock content %}
+
+        <!-- <footer>
+            <div class="contanier">
+                <div class="top-footer">
+                    <div class="row">
+                        <img src="{% static 'img/logo.png' %}" alt="">
+                        <div class="hotline"> 
+                            <div class="hotline-text">
+                                <h6>رقم الهاتف : </h6>
+                                <span>(+213) 05 55 96 05 93</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="small-row">
+                        <h6> اعرف المزيد عنا</h6>
+                        <div class="links-row">
+                            <a href="#"><i class="fa-solid fa-angle-left"></i>الشحن و التوصيل </a>
+                        </div>
+                    </div>
+
+                    <div class="small-row">
+                        <h6> تسوق معنا</h6>
+                        <div class="links-row">
+                            <a href="#"><i class="fa-solid fa-angle-left"></i>حسابك</a>
+                            <a href="#"> <i class="fa-solid fa-angle-left"></i>مشترياتك</a>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+            <div class="bottom-footer">
+                <div class="contanier">
+                    <p>Copyright &copy; <span>Amir. </span>Powered by <span>CHAREF Amir</span></p>
+                <div class="payment">
+                    <img src="{% static 'img/payment-1.png' %}" alt="">
+                    <img src="{% static 'img/payment-2.png' %}" alt="">
+                    <img src="{% static 'img/payment-3.png' %}" alt="">
+                    <img src="{% static 'img/payment-4.png' %}" alt="">
+                </div>
+                </div>
+            </div>
+        </footer> -->
+
+        <footer style="background-color: #394150; padding-block: 3rem 2rem;">
+            <div class="container">
+                <div style="display: flex;justify-content: space-between;">
+                    <ul style="display: flex; justify-content: center; gap: 2rem; list-style: none; padding: 0; margin: 0;">
+                        <li>
+                            <a href="{% url 'core:index' %}" style="color: white; text-decoration: none; transition: color 0.4s;">الرئيسية</a>
+                        </li>
+            
+                        <li>
+                            <a href="{% url 'core:category-list' %}" style="color: white; text-decoration: none; transition: color 0.4s;">الفئات</a>
+                        </li>
+            
+                        <li>
+                            <a href="" style="color: white; text-decoration: none; transition: color 0.4s;">الإعدادات</a>
+                        </li>
+                    </ul>
+            
+                    <span style="color: lightgray; font-size: smaller;">
+                        &#169; جميع الحقوق محفوظة 
+                    </span>
+                </div>
+            </div>
+        </footer>
+        
+
+        <!-- Swiper JS -->
+        <script src="{% static 'swiperJs/swiper-bundle.min.js' %}"></script>
+
+        <!-- Linke File JS -->
+        <script src="{% static 'main.js' %}"></script>
+        <script src="{% static 'function.js' %}"></script>
+
+        <!-- htmlTOpdf library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+    </body>
+</html>

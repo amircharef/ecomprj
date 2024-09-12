@@ -1,0 +1,66 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="slide-with-img contanier">
+
+    <div class="section-head">
+        <h4>جميع المنتجات<span></span> </h4>
+    </div>
+    
+    <div class="cont">
+        <!-- Products -->
+        <div class="swip-with-img swiper mySwiper">
+            <div class="boxs swiper-wrapper">
+        
+                {% for p in products %}
+                <div class="box column product-item swiper-slide">
+                    <div class="product-btn">
+                        <ul class="product-action">
+                            <li><a class="add-to-wishlist" id="add-to-wishlist" data-product-item="{{ p.id }}"><i class="fa-regular fa-heart"></i></a></li>
+                            <li class="add-cart">
+                                <input type="hidden" value="1" class="product-quantity-{{ p.id }}" id="product-quantity">
+                                <input type="hidden" value="{{ p.pid }}" class="product-pid-{{ p.id }}" >
+                                <input type="hidden" value="{{ p.id }}" class="product-id-{{ p.id }}" name="" id="">
+                                <input type="hidden" value="{{ p.image.url }}" class="product-image-{{ p.id }}" name="" id="">
+                                <input type="hidden" value="{{ p.title }}" class="product-title-new-{{ p.id }}" name="" id="">
+                                <a class="add-to-cart-btn" data-index="{{ p.id }}" id="add-to-cart-btn"><i class="fa-solid fa-cart-arrow-down"></i></a>
+                            </li>
+                            <li><a href="{% url 'core:product-detail' p.pid %}"><i class="fa-solid fa-eye"></i></a></li>
+                        </ul>
+                    </div>
+        
+                    <div class="div-img">
+                        <img src="{{ p.image.url }}" class="img-product">
+                        <img src="{{ p.image.url }}" class="hover-img">
+                    </div>
+        
+                    <div class="content">
+                        <h2 class="product-item-link">{{ p.title }}</h2>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <div>
+                            <span class="font-small text-muted">By <a href="vendor-details-1.html" style="text-decoration: none;" class="font-small">{{p.vendor.title}}</a></span>
+                        </div>
+                        <div class="product-price" style="margin: 1rem 0; font-size: 1rem; font-weight: 700;">
+                            <p class="last-price " style="font-weight: 400; color: #f64749; text-decoration: line-through;">السعر القديم: <span>{{ p.old_price }} دج</span></p>
+                            <p class="new-price" style="font-weight: 400; color: #256eff;">السعر الجديد: <span class="current-product-price-{{p.id}}">{{ p.price }}</span></p>
+                        </div>
+                    </div>
+                </div>  
+                {% endfor %}
+        
+            </div>
+        
+        </div>
+        
+    </div>
+
+</section>
+
+{% endblock content %}

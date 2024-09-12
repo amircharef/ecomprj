@@ -1,0 +1,51 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="contanier">
+
+
+        <div class="box-sign-up">
+            <div class="signup">
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <label for="email">الايميل</label>
+                    <div class="inp">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" name="email" placeholder="ادخل الايميل" required>
+                    </div>
+
+                    <label for="password">كلمة السر</label>
+                    <div class="inp">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" name="password" placeholder="ادخل الرقم السري" required>
+                    </div>
+
+                    <div class="check-box">
+                        <div class="check">
+                            <input type="checkbox" name="checkbox">
+                            <span>حفظ الحساب</span>
+                        </div>
+                        <a href="#" class="forg">هل نسيت كلمة السر؟</a>
+                    </div>
+
+                    <button type="submit" name="login">تسجيل الدخول</button>
+                </form>
+
+                <span class="line-sign">or</span>
+
+                <div class="sign-soc">
+                    <div class="box">
+                        <a class="btn" href="#"><img src="{% static 'img/google.png' %}" alt=""> تسجيل الدخول بحساب جوجل</a>
+                    </div>
+                </div>
+            <p class="creat-ac">ليس لدي حساب <a href="{% url 'userauths:sign-up' %}">انشاء حساب
+            </a></p>
+        </div>
+    </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,105 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="container">
+
+    <div class="section-head">
+        <h4>الفئات <span>({{categories.count}})</span> </h4>
+    </div>
+
+    <div class="categories">
+        <!-- Categories -->
+        
+        <div class="boxs">
+
+                <!-- {% for c in categories %}
+                <div class="box column product-item">
+                    
+                    <div class="div-img">
+                        <img src="{{ c.image.url }}" class="img-product card-img-top">
+                        <img src="{{ c.image.url }}" class="hover-img">
+                    </div>
+        
+                    <div class="content">
+                        <h4 class="post-title mb-15">
+                            <a href="{% url 'core:category-product-list' c.cid %}">{{ c.title }}</a>
+                        </h4>
+                        <div class="entry-meta font-xs color-grey mt-10 pb-10">
+                            <div>
+                                <span class="hit-count mr-10">{{ c.category.count }}{{ c.category.count | pluralize:"منتج,منتجات" }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                {% endfor %} -->
+                <div class="category-cards-container" style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 20px; 
+                    padding: 10px; 
+                    margin-bottom:40px;
+                ">
+                    {% for c in categories %}
+                    <div class="box column product-item" style="
+                        border: 1px solid #ddd;
+                        border-radius: 10px;
+                        overflow: hidden;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        width: 300px;
+                        transition: transform 0.2s;
+                        text-align: center;
+                        position: relative;
+                    ">
+                        <div class="div-img" style="position: relative;">
+                            <img src="{{ c.image.url }}" class="img-product card-img-top" style="
+                                width: 100%;
+                                height: 180px;
+                                object-fit: cover;
+                                transition: opacity 0.3s;
+                            ">
+                            <img src="{{ c.image.url }}" class="hover-img" style="
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                transition: opacity 1s;
+                            ">
+                        </div>
+
+                        <div class="content" style="padding: 15px;">
+                            <h4 class="post-title mb-15" style="
+                                font-size: 1.25rem;
+                                margin-bottom: 10px;
+                            ">
+                                <a href="{% url 'core:category-product-list' c.cid %}" style="
+                                    text-decoration: none;
+                                    color: #333;
+                                    transition: color 0.3s;
+                                ">{{ c.title }}</a>
+                            </h4>
+                            <div class="entry-meta font-xs color-grey mt-10 pb-10" style="
+                                font-size: 0.875rem;
+                                color: #555;
+                            ">
+                                <div>
+                                    <span class="hit-count mr-10">{{ c.category.count }} {{ c.category.count | pluralize:" منتج,منتجات" }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+        
+            </div>
+        
+        
+    </div>
+</section>
+
+
+{% endblock content %}

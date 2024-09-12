@@ -1,0 +1,76 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="slide-with-img contanier">
+
+    <div class="section-head">
+        <h4>جميع المنتجات<span></span> </h4>
+    </div>
+    <div class="cont">
+    {% if products %}
+        <!-- Products -->
+            <div class="boxs">
+
+                <div class="cont">
+                    <div>
+                        <div class="boxs" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
+                            {% for p in products %}
+                            <div class="box column product-item swiper-slide" style="
+                                width: 370px;
+                                box-sizing: border-box;
+                            ">
+                                <div class="product-btn">
+                                    <ul class="product-action">
+                                        <li><a class="add-to-wishlist" id="add-to-wishlist" data-product-item="{{ p.id }}"><i class="fa-regular fa-heart"></i></a></li>
+                                        <li><a href="#"><i class="fa-solid fa-cart-arrow-down"></i></a></li>
+                                        <li><a href="{% url 'core:product-detail' p.pid %}"><i class="fa-solid fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                    
+                                <div class="div-img">
+                                    <img src="{{ p.image.url }}" class="img-product">
+                                    <img src="{{ p.image.url }}" class="hover-img">
+                                </div>
+                    
+                                <div class="content">
+                                    <h2 class="product-item-link">{{ p.title }}</h2>
+                                    <div class="stars">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                    </div>
+                                    
+                                    <div class="price">
+                                        <span>{{ p.price }} دج</span><br/>
+                                        <del>{{ p.old_price }} دج</del>
+                                    </div>
+                                </div>
+                            </div>  
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+    {% else %}
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none" >
+        <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </symbol>
+    </svg> 
+    <div class="alert alert-warning d-flex align-items-center" role="alert" style="width: 100%;height: 70px;box-sizing: border-box;">
+        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:" style="width: 25px;"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div style="margin-right:10px; font-weight:bold; font-size:20px;">
+            لا يوجد منتجات بهذا الاسم.
+        </div>
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock content %}

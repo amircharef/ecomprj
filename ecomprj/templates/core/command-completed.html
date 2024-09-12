@@ -1,0 +1,122 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="padding: 16px; margin-top: 40px;" class="container">
+    <div class="alert alert-success" role="alert" style="margin: 0 auto 20px;color: white; background-color: #28a745; border-color: #28a745; width:62%;">
+        شكرًا. لقد تم استلام طلبك.
+    </div>
+    <!-- Large Container Start -->
+    <div style="max-width: 800px; margin: 0 auto; background: white; border: 1px solid #e5e5e5; border-radius: 6px;">
+        <!-- Header Section -->
+        <div style="padding: 24px;">
+            <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
+                <tbody>
+                    <tr>
+                        <td style="width: 100%; vertical-align: top;">
+                            <div>
+                                <img src="{% static 'img/logo.png' %}" style="height: 48px; margin-top: 10px;">
+                            </div>
+                        </td>
+                        <td style="vertical-align: top;">
+                            <div style="font-size: 0.875rem; text-align: right;">
+                                <table style="border-collapse: collapse; border-spacing: 0;">
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding-left: 16px;">
+                                                <div>
+                                                    <p style="white-space: nowrap; color: #9e9e9e;">التاريخ</p>
+                                                    <p style="white-space: nowrap; font-weight: bold; color: #000;">26 أبريل، 2023</p>
+                                                </div>
+                                            </td>
+                                            <td style="border-right: 1px solid #e0e0e0; padding-right: 16px;">
+                                                <div>
+                                                    <p style="white-space: nowrap; color: #9e9e9e;">رقم الفاتورة</p>
+                                                    <p style="white-space: nowrap; font-weight: bold; color: #000;">BRA-00335</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Supplier and Customer Information -->
+        <div style="background-color: #f5f5f5; padding: 24px; font-size: 0.875rem;">
+            <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
+                <tbody>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top;">
+                            <div style="font-size: 0.875rem; color: #616161;">
+                                <p style="font-weight: bold;">بيانات الزبون</p>
+                                <form id="checkout-form">
+                                    <p>الإسم و اللقب : <input type="text" id="name" name="name" required></p>
+                                    <p>اسم الشركة : <input type="text" id="company" name="company"></p>
+                                    <p>العنوان : <input type="text" id="address" name="address" required></p>
+                                    <p>رقم الهاتف : <input type="text" id="phone" name="phone" required></p>
+                                    <p>البريد الالكتروني : <input type="email" id="email" name="email" required></p>
+                                </form>
+                            </div>
+                        </td>
+                        <td style="width: 50%; vertical-align: top;">
+                            <button id="confirm-btn" class="disabled-button" disabled>تأكيد الطلب</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Invoice Table -->
+        <div style="padding: 24px; font-size: 0.875rem; color: #424242;">
+            <h3 style="color: #000; margin-bottom:20px">تفاصيل الطلب</h3>
+            <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
+                <thead>
+                    <tr>
+                        <th style="border-bottom: 2px solid #000; padding: 12px; font-weight: bold; color: #000;">#</th>
+                        <th style="border-bottom: 2px solid #000; padding: 12px; font-weight: bold; color: #000;">المنتج</th>
+                        <th style="border-bottom: 2px solid #000; padding: 12px; text-align: right; font-weight: bold; color: #000;">سعر الوحدة</th>
+                        <th style="border-bottom: 2px solid #000; padding: 12px; text-align: center; font-weight: bold; color: #000;">الكمية</th>
+                        <th style="border-bottom: 2px solid #000; padding: 12px; text-align: right; font-weight: bold; color: #000;">المجموع</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product_id, item in cart_data.items %}
+                    <tr>
+                        <td style="border-bottom: 1px solid #e0e0e0; padding: 12px;">{{ forloop.counter }}.</td>
+                        <td style="border-bottom: 1px solid #e0e0e0; padding: 12px;">{{ item.title }}</td>
+                        <td style="border-bottom: 1px solid #e0e0e0; padding: 12px; text-align: right;">{{ item.price|floatformat:2 }}</td>
+                        <td style="border-bottom: 1px solid #e0e0e0; padding: 12px; text-align: center;">{{ item.qty }}</td>
+                        <td style="border-bottom: 1px solid #e0e0e0; padding: 12px; text-align: right;">{% widthratio item.price 1 item.qty %} د.ج</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" style="border-top: 1px solid #e0e0e0; padding: 12px; text-align: right; font-weight: bold; color: #000;">المجموع الفرعي</td>
+                        <td style="border-top: 1px solid #e0e0e0; padding: 12px; text-align: right; font-weight: bold; color: #000;">{{cart_total_amount}} دج</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="border-top: 1px solid #e0e0e0; padding: 12px; text-align: right; font-weight: bold; color: #000;">التوصيل</td>
+                        <td style="border-top: 1px solid #e0e0e0; padding: 12px; text-align: right; font-weight: bold; color: #000;">مجـــــانـــا</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="border-top: 1px solid #e0e0e0; padding: 12px; text-align: right; font-weight: bold; color: #000;">إجمالي المبلغ</td>
+                        <td style="border-top: 1px solid #e0e0e0; padding: 12px; text-align: right; font-weight: bold; color: #000;">{{cart_total_amount}} د.ج</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- Footer Section -->
+        <div style="padding: 24px; font-size: 0.875rem; text-align: center; color: #9e9e9e;">
+            <p>شكراً لتعاملكم معنا!</p>
+            <p>Amir | Online Store</p>
+            <p>تواصل معنا: charefamir40@gmail.com | +213-0555555555</p>
+        </div>
+    </div>
+    <!-- Large Container End -->
+
+</div>
+{% endblock %}

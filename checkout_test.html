@@ -1,0 +1,207 @@
+    <form name="checkout"method="post"class="checkout woocommerce-checkout "action="https://oktobit.store/checkout/"enctype="multipart/form-data">
+        <div class="row pt-0 ">
+            
+            <div class="large-7 col  ">
+                <div id="customer_details">
+                    <div class="clear">
+                        <div class="woocommerce-billing-fields">
+                            <h3>Détails de facturation</h3>
+                            <div class="woocommerce-billing-fields__field-wrapper">
+                                
+                                
+                                <p class="form-row form-row-wide address-field thwcfd-field-wrapper thwcfd-field-text  validate-required" id="billing_city_field" data-priority="90">
+                                    <label for="billing_city" class="">Commune&nbsp;
+                                        <abbr class="required" title="obligatoire">*</abbr>
+                                    </label>
+                                    <span class="woocommerce-input-wrapper">
+                                        <input
+                                            type="text"
+                                            class="input-text "
+                                            name="billing_city"
+                                            id="billing_city"
+                                            placeholder=""
+                                            value="alger"
+                                            autocomplete="address-level2"
+                                        >
+                                    </span>
+                                </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear">
+                        <div class="woocommerce-additional-fields">
+                            <div class="woocommerce-additional-fields__field-wrapper">
+                                <p class="form-row form-row-wide notes thwcfd-field-wrapper thwcfd-field-textarea " id="order_comments_field" data-priority="20">
+                                    <label for="order_comments" class="">Notes de commande&nbsp;
+                                        <span class="optional">(facultatif)</span>
+                                    </label>
+                                    <span class="woocommerce-input-wrapper">
+                                        <textarea
+                                            name="order_comments"
+                                            class="input-text "
+                                            id="order_comments"
+                                            placeholder="Commentaires concernant votre commande, ex. : consignes de livraison."
+                                            rows="2"
+                                            cols="5"
+                                        ></textarea>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="large-5 col">
+                <div class="col-inner has-border">
+                    <div class="checkout-sidebar sm-touch-scroll">
+                        <h3 id="order_review_heading">Votre commande</h3>
+                        <div id="order_review" class="woocommerce-checkout-review-order">
+                            <table class="shop_table woocommerce-checkout-review-order-table">
+                                <thead>
+                                    <tr>
+                                        <th class="product-name">Produit</th>
+                                        <th class="product-total">Sous-total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="cart_item">
+                                        <td class="product-name">
+                                            Lenovo thinkpad E480&nbsp;
+                                            <strong class="product-quantity">&times;&nbsp;1</strong>
+                                        </td>
+                                        <td class="product-total">
+                                            <span class="woocommerce-Price-amount amount">
+                                                <bdi>
+                                                    <span class="woocommerce-Price-currencySymbol">&#x62f;.&#x62c;</span>&nbsp;58.000,00
+                                                </bdi>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="cart_item">
+                                        <td class="product-name">
+                                            Hp probook 640 G4&nbsp;
+                                            <strong class="product-quantity">&times;&nbsp;1</strong>
+                                        </td>
+                                        <td class="product-total">
+                                            <span class="woocommerce-Price-amount amount">
+                                                <bdi>
+                                                    <span class="woocommerce-Price-currencySymbol">&#x62f;.&#x62c;</span>&nbsp;62.000,00
+                                                </bdi>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="cart-subtotal">
+                                        <th>Sous-total</th>
+                                        <td>
+                                            <span class="woocommerce-Price-amount amount">
+                                                <bdi>
+                                                    <span class="woocommerce-Price-currencySymbol">&#x62f;.&#x62c;</span>&nbsp;120.000,00
+                                                </bdi>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="woocommerce-shipping-totals shipping ">
+                                        <td class="shipping__inner" colspan="2">
+                                            <table class="shipping__table ">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Expédition</th>
+                                                        <td data-title="Expédition">
+                                                            <ul id="shipping_method" class="shipping__list woocommerce-shipping-methods">
+                                                                <li class="shipping__list_item">
+                                                                    <input
+                                                                        type="hidden"
+                                                                        name="shipping_method[0]"
+                                                                        data-index="0"
+                                                                        id="shipping_method_0_free_shipping1"
+                                                                        value="free_shipping:1"
+                                                                        class="shipping_method"
+                                                                    >
+                                                                    <label class="shipping__list_label" for="shipping_method_0_free_shipping1">Livraison gratuite</label>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr class="order-total">
+                                        <th>Total</th>
+                                        <td>
+                                            <strong>
+                                                <span class="woocommerce-Price-amount amount">
+                                                    <bdi>
+                                                        <span class="woocommerce-Price-currencySymbol">&#x62f;.&#x62c;</span>&nbsp;120.000,00
+                                                    </bdi>
+                                                </span>
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <div id="payment" class="woocommerce-checkout-payment">
+                                <ul class="wc_payment_methods payment_methods methods">
+                                    <li class="wc_payment_method payment_method_cod">
+                                        <input
+                                            id="payment_method_cod"
+                                            type="radio"
+                                            class="input-radio"
+                                            name="payment_method"
+                                            value="cod"
+                                            checked="checked"
+                                            data-order_button_text=""
+                                        >
+                                        <label for="payment_method_cod">
+                                            Cash on delivery
+                                        </label>
+                                        <div class="payment_box payment_method_cod">
+                                            <p>Pay with cash upon delivery.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="form-row place-order">
+                                    <noscript>
+                                        Votre navigateur ne supporte pas JavaScript ou bien il est désactivé, assurez vous de cliquer sur le bouton
+                                        <em>Mise à Jour Totaux</em> avant de passer votre commande. Vous pouvez être facturé plus que le montant indiqué ci-dessus si vous omettez de le faire.
+                                        <br>
+                                        <button
+                                            type="submit"
+                                            class="button alt"
+                                            name="woocommerce_checkout_update_totals"
+                                            value="Mise à jour des totaux"
+                                        >Mise à jour des totaux</button>
+                                    </noscript>
+                                    <div class="woocommerce-terms-and-conditions-wrapper"></div>
+                                    <button
+                                        type="submit"
+                                        class="button alt"
+                                        name="woocommerce_checkout_place_order"
+                                        id="place_order"
+                                        value="Commander"
+                                        data-value="Commander"
+                                    >Commander</button>
+                                    <input
+                                        type="hidden"
+                                        id="woocommerce-process-checkout-nonce"
+                                        name="woocommerce-process-checkout-nonce"
+                                        value="38e269ea19"
+                                    >
+                                    <input type="hidden" name="_wp_http_referer" value="/checkout/">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="woocommerce-privacy-policy-text">
+                            <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our
+                                <a href="https://oktobit.store/?page_id=3" class="woocommerce-privacy-policy-link" target="_blank">politique de confidentialité</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
